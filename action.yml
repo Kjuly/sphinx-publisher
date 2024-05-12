@@ -1,0 +1,46 @@
+name: 'Sphinx Publisher'
+author: 'Kaijie Yu'
+description: |-
+  Deploy Sphinx source files as Github Pages. Multi-languages can be
+  handled by providing langs.
+
+branding:
+  icon: 'globe'
+  color: 'white'
+
+inputs:
+  default-lang:
+    description: |-
+      The default language, which will be placed under the build directory,
+      no subdirectory will be created. Default is 'en'.
+    required: false
+    default: 'en'
+  lang-mappings:
+    description: |-
+      Newline-separated list of folder & language mappings to build.
+      e.g.,
+        en:en
+        zh-Hans:zh_CN
+      If you don't provide one, will use Makefile's SOURCEDIR & BUILDDIR to determine.
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Build static pages
+      uses: Kjuly/sphinx-builder@main
+      with:
+        default-lang: ${{ inputs.default-lang }}
+        lang-mappings: ${{ inputs.lang-mappings }}
+    - name: Setup Pages
+      uses: actions/configure-pages@v5
+    - name: Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '${{ github.workspace }}/build'
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
