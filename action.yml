@@ -9,13 +9,13 @@ branding:
   color: 'white'
 
 inputs:
-  default-lang:
+  default_lang:
     description: |-
       The default language, which will be placed under the build directory,
       no subdirectory will be created. Default is 'en'.
     required: false
     default: 'en'
-  lang-mappings:
+  lang_mappings:
     description: |-
       Newline-separated list of folder & language mappings to build.
       e.g.,
@@ -33,8 +33,8 @@ runs:
     - name: Build static pages
       uses: Kjuly/sphinx-builder@main
       with:
-        default-lang: ${{ inputs.default-lang }}
-        lang-mappings: ${{ inputs.lang-mappings }}
+        default_lang: ${{ inputs.default_lang }}
+        lang_mappings: ${{ inputs.lang_mappings }}
     - name: Setup Pages
       uses: actions/configure-pages@v5
     - name: Upload Pages Artifact
