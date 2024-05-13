@@ -25,6 +25,11 @@ inputs:
     required: false
     default: ''
 
+outputs:
+  page_url:
+    description: 'URL to deployed GitHub Pages.'
+    value: ${{ steps.deployment.outputs.page_url }}
+
 runs:
   using: "composite"
   steps:
