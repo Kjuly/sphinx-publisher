@@ -1,6 +1,8 @@
 # sphinx-publisher
 Github Action to deploy Sphinx source files as Github Pages.
 
+A template ([sphinx-template](https://github.com/Kjuly/sphinx-template)) is available as a demo.
+
 ## Configurations
 
 | Input | Default | Description
