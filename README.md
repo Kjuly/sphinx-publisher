@@ -1,6 +1,15 @@
 # sphinx-publisher
 Github Action to deploy Sphinx source files as Github Pages.
 
+## Configurations
+
+| Input | Default | Description
+| --- | --- | ---
+| source_root | docs/sources | Root directory of source to build.
+| build_root | docs/build | Root directory for build output.
+| default_lang | en | The default language, which will be placed under the build directory, no subdirectory will be created.
+| lang_mappings | '' | Newline-separated list of folder & language mappings to build (refer to [Multiple languages](#multiple-languages). If you don't provide one, will use Makefile's SOURCEDIR & BUILDDIR to determine.
+
 ## Usage
 
 ### One language only

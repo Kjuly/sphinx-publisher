@@ -9,6 +9,14 @@ branding:
   color: 'white'
 
 inputs:
+  source_root:
+    description: "Root directory of source to build, default: 'docs/sources'."
+    required: false
+    default: 'docs/sources'
+  build_root:
+    description: "Root directory for build output, default: 'docs/build'."
+    required: false
+    default: 'docs/build'
   default_lang:
     description: |-
       The default language, which will be placed under the build directory,
@@ -21,7 +29,7 @@ inputs:
       e.g.,
         en:en
         zh-Hans:zh_CN
-      If you don't provide one, will use Makefile's SOURCEDIR & BUILDDIR to determine.
+      If you don't provide one, will just build for `default_lang`.
     required: false
     default: ''
 
@@ -38,6 +46,8 @@ runs:
     - name: Build static pages
       uses: Kjuly/sphinx-builder@main
       with:
+        source_root: ${{ inputs.source_root }}
+        build_root: ${{ inputs.build_root }}
         default_lang: ${{ inputs.default_lang }}
         lang_mappings: ${{ inputs.lang_mappings }}
     - name: Setup Pages
